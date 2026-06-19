@@ -5,16 +5,18 @@
 
             <div class="flex items-center gap-5">
                 <div>
-                    @if ($post->user->avatar)
-                        <img src="{{ $post->user->avatarUrl() }}" alt="{{ $post->user->name }}"
-                            class="size-20 rounded-full object-cover object-top" />
-                    @else
-                        <img src="/user.png" alt="{{ $post->user->name }}" class="size-20 rounded-full object-cover" />
-                    @endif
+                    <x-user-avatar :user="$post->user" />
                 </div>
 
                 <div>
-                    <h3 class="text-base font-medium">{{ $post->user->name }}</h3>
+                    <div>
+                        <a href="{{ route("profile.show", $post->user) }}"
+                            class="text-base font-medium hover:underline">{{ $post->user->name }}</a>
+                        &middot;
+
+                        <a href="#"
+                            class="text-emerald-600 rounded-full px-3 py-1 text-base font-normal border border-emerald-600">Follow</a>
+                    </div>
                     <div class="text-gray-500">
                         {{ $post->readTime() }} min read &middot; {{ $post->created_at->diffForHumans() }}
                     </div>
