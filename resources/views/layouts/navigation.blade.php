@@ -13,9 +13,11 @@
 
             <div class="flex items-center">
                 <div>
-                    <a href="{{ route('post.create') }}">
-                        <x-primary-button>Create Post</x-primary-button>
-                    </a>
+                    <x-primary-button>
+                        <a href="{{ route('post.create') }}">
+                            Create Post
+                        </a>
+                    </x-primary-button>
                 </div>
 
                 <!-- Settings Dropdown -->

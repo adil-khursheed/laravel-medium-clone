@@ -14,21 +14,16 @@
                             <a href="#" class="inline-block px-4 py-2.5 bg-brand rounded-base">{{ $category->name }}</a>
                         </li>
                     @endforeach
-
                 </ul>
-
             @endif
         </div>
 
         <div class="flex flex-col gap-5 mt-5">
             @forelse ($posts as $post)
-
-
                 <div class="flex bg-white rounded-xl shadow-sm overflow-hidden">
-
-                    <div class="flex-1 p-4">
+                    <div class="flex-1 p-4 lg:p-6">
                         <a href="#">
-                            <h5 class="mt-6 mb-2 text-2xl font-semibold tracking-tight text-heading">{{ $post->title }}
+                            <h5 class="mb-2 text-2xl font-semibold tracking-tight text-heading">{{ $post->title }}
                             </h5>
                         </a>
                         <p class="mb-6 text-body">{{ Str::words($post->content, 30) }}</p>
@@ -45,13 +40,11 @@
                         </a>
                     </div>
                     <div>
-                        <img class="rounded-r-xl w-80 h-full object-cover"
-                            src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="" />
+                        <img class="rounded-r-xl w-80 h-full object-cover" src="{{ Storage::url($post->image) }}" alt="" />
                     </div>
                 </div>
-
             @empty
-                <div>
+                <div class="text-center text-lg font-medium text-gray-400 py-16 capitalize">
                     no post found
                 </div>
             @endforelse
