@@ -31,18 +31,16 @@ class RegisterController extends Controller
     {
         $request->validate([
             "name" => ["required", "string", "max:255"],
+            "username" => ["required", "string", "lowercase", "max:255", "unique:users"],
             "email" => ["required", "email", "max:255", "lowercase", "string", "unique:" . User::class],
             "password" => ["required", "confirmed", Rules\Password::defaults()],
         ]);
 
-        $hashedPassword = Hash::make($request->password, [
-            "rounds" => 12
-        ]);
-
         $user = User::create([
-            "name" => $request->name,
-            "email" => $request->email,
-            "password" => $hashedPassword
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
         ]);
 
         event(new Registered($user));

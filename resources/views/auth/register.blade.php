@@ -4,30 +4,42 @@
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" class="block mt-1 w-full h-11" />
+            <x-text-input id="name" type="text" name="name" :value="old('name')" autofocus autocomplete="name"
+                class="block mt-1 w-full h-11" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <div>
+            <x-input-label for="username" :value="__('Username')" />
+            <x-text-input id="username" type="text" name="username" :value="old('username')"
+                class="block mt-1 w-full h-11" />
+            <x-input-error :messages="$errors->get('username')" class="mt-2" />
+        </div>
+
+        <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" type="email" name="email" :value="old('email')" required autocomplete="username" class="block mt-1 w-full h-11" />
+            <x-text-input id="email" type="email" name="email" :value="old('email')" autocomplete="username"
+                class="block mt-1 w-full h-11" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <div>
             <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" type="password" name="password" required autocomplete="new-password" class="block mt-1 w-full h-11" />
+            <x-text-input id="password" type="password" name="password" autocomplete="new-password"
+                class="block mt-1 w-full h-11" />
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <div>
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-            <x-text-input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" class="block mt-1 w-full h-11" />
+            <x-text-input id="password_confirmation" type="password" name="password_confirmation"
+                autocomplete="new-password" class="block mt-1 w-full h-11" />
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
 
@@ -37,4 +49,22 @@
         </div>
 
     </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const name = document.getElementById("name");
+            const username = document.getElementById("username");
+
+            name.addEventListener("input", function () {
+                username.value = name.value
+                    .trim()
+                    .toLowerCase()
+                    .replace(/^-+/, "")
+                    .replace(/-+$/, "")
+                    .replace(/\s+/g, "-")
+                    .replace(/[^\w\-]+/g, "")
+                    .replace(/\-\-+/g, "-");
+            });
+        })
+    </script>
 </x-guest-layout>

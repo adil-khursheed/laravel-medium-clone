@@ -42,7 +42,7 @@ class PostController extends Controller
     {
 
         $data = $request->validate([
-            "image" => ["required", "image", "mimes:jpg,jpeg,png,gif,svg", "max:2048"],
+            "image" => ["required", "image", "mimes:jpg,jpeg,png,gif,svg,webp", "max:2048"],
             "title" => ["required", "string"],
             "content" => ["required", "string"],
             "category_id" => ["required", "exists:categories,id"],
@@ -64,9 +64,11 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(string $username, Post $post)
     {
-        //
+        return view("post.show", [
+            "post" => $post
+        ]);
     }
 
     /**
