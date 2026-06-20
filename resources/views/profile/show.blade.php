@@ -17,13 +17,27 @@
                 </div>
 
                 <div class="w-80 border-l border-gray-200 pl-8 sticky top-20">
-                    <div>
+                    <div class="flex flex-col py-5">
                         <x-user-avatar :user="$user" size="size-20 md:size-32" />
 
-                        <div>
-                            <h3>{{ $user->name }}</h3>
-                            <p>{{ $user->bio }}</p>
-                        </div>
+                        <x-follow-container :user="$user" class="mt-4 space-y-2 px-2">
+                            <h3 class="font-semibold text-xl">{{ $user->name }}</h3>
+                            <div class="text-gray-400 text-lg capitalize">
+                                <span x-text="followersCount"></span>
+                                <span x-text="followersCount > 1 ? 'followers' : 'follower'"></span>
+                            </div>
+                            @if ($user->bio)
+                                <p>{{ $user->bio }}</p>
+                            @endif
+
+                            @if (auth()->user() && auth()->user()->id !== $user->id)
+                                <div class="mt-4">
+                                    <button @click="follow()" class="px-4 py-2 rounded-full text-white cursor-pointer"
+                                        x-text="following ? 'Unfollow' : 'Follow'"
+                                        :class="following ? 'bg-red-600 hover:bg-red-700' : 'bg-emerald-600 hover:bg-emerald-700'"></button>
+                                </div>
+                            @endif
+                        </x-follow-container>
                     </div>
                 </div>
             </div>

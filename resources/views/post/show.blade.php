@@ -9,14 +9,23 @@
                 </div>
 
                 <div>
-                    <div>
+                    <x-follow-container :user="$post->user" class="flex items-center gap-3">
                         <a href="{{ route("profile.show", $post->user) }}"
-                            class="text-base font-medium hover:underline">{{ $post->user->name }}</a>
-                        &middot;
+                            class="text-base font-medium hover:underline">
+                            {{ $post->user->name }}
+                        </a>
 
-                        <a href="#"
-                            class="text-emerald-600 rounded-full px-3 py-1 text-base font-normal border border-emerald-600">Follow</a>
-                    </div>
+                        @if (auth()->user() && auth()->user()->id !== $post->user->id)
+
+                            &middot;
+
+                            <button @click="follow()" x-text="following ? 'Unfollow' : 'Follow'"
+                                class="cursor-pointer text-base"
+                                :class="following ? 'text-red-600 hover:text-red-700' : 'text-emerald-600 hover:text-emerald-700'">
+                            </button>
+                        @endif
+                    </x-follow-container>
+
                     <div class="text-gray-500">
                         {{ $post->readTime() }} min read &middot; {{ $post->created_at->diffForHumans() }}
                     </div>

@@ -1,10 +1,10 @@
-<div class="flex bg-white rounded-xl shadow-sm overflow-hidden">
+<div class="flex flex-col-reverse md:flex-row bg-white rounded-xl shadow-sm overflow-hidden">
     <div class="flex-1 p-4 lg:p-6">
         <a href="{{ route("post.show", [
     "username" => $post->user->username,
     "post" => $post->slug
-]) 
-                                                                        }}">
+])
+        }}">
             <h5 class="mb-2 text-2xl font-semibold tracking-tight text-heading">{{ $post->title }}
             </h5>
         </a>
@@ -21,6 +21,6 @@
         </a>
     </div>
     <div>
-        <img class="rounded-r-xl w-80 h-full object-cover" src="{{ Storage::url($post->image) }}" alt="" />
+        <img class="md:rounded-r-xl w-full md:w-80 h-full object-cover" src="{{ Storage::url($post->image) }}" alt="" />
     </div>
 </div>
