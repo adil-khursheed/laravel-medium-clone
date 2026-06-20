@@ -15,7 +15,7 @@
     }" class="mt-10 border-t border-b border-gray-200 py-5 px-4 flex items-center gap-3">
 
     @if (auth()->user() && auth()->user()->id !== $post->user->id)
-        <button @click="clap()" disabled="{{ !auth()->user() }}"
+        <button @click="clap()"
             class="size-7 text-gray-500 hover:text-gray-800 cursor-pointer disabled:text-gray-400 disabled:cursor-not-allowed">
             <template x-if="!hasClapped">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
