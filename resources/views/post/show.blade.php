@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="py-4 mt-5">
         <div class="max-w-3xl mx-auto px-4 lg:px-6">
-            <h1 class="text-5xl font-bold mb-16">{{ $post->title }}</h1>
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-12 lg:mb-16">{{ $post->title }}</h1>
 
             <div class="flex items-center gap-5">
                 <div>
@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <x-clap-button />
+            <x-clap-button :post="$post" />
 
             <div>
                 <div class="my-10">
@@ -50,7 +50,7 @@
                 </span>
             </div>
 
-            <x-clap-button />
+            <x-clap-button :post="$post" />
         </div>
     </div>
 </x-app-layout>
