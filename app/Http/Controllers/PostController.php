@@ -24,6 +24,15 @@ class PostController extends Controller
         ]);
     }
 
+    public function filterByCategory(Category $category)
+    {
+        $posts = $category->posts()->orderBy("created_at", "desc")->simplePaginate(5);
+
+        return view('post.index', [
+            'posts' => $posts
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
